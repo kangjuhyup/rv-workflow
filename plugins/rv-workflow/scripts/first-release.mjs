@@ -254,18 +254,18 @@ export const lookupRegistryIntegrity = async (
     throw new Error("Registry lookup requires the Fetch API.");
   }
 
-  const response = await request(`${NPM_REGISTRY}/${encodeURIComponent(name)}`, {
-    headers: { accept: "application/json" },
-  });
+  const response = await request(
+    `${NPM_REGISTRY}/${encodeURIComponent(name)}/${encodeURIComponent(version)}`,
+    {
+      headers: { accept: "application/json" },
+    },
+  );
   if (response.status === 404) return undefined;
   if (!response.ok) {
     throw new Error(`npm registry lookup failed with HTTP ${response.status}.`);
   }
 
-  const metadata = await response.json();
-  const versions = isRecord(metadata) && isRecord(metadata.versions) ? metadata.versions : undefined;
-  const release = versions === undefined ? undefined : versions[version];
-  if (release === undefined) return undefined;
+  const release = await response.json();
   const integrity = isRecord(release) && isRecord(release.dist) ? release.dist.integrity : undefined;
   return assertIntegrity(integrity, `${name}@${version}`);
 };

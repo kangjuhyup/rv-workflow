@@ -129,21 +129,25 @@ describe("first release automation", () => {
   });
 
   it("treats an HTTP 404 as an unregistered first version and reads exact registry integrity", async () => {
+    const notFound = vi.fn(async () => new Response("not found", { status: 404 }));
     await expect(lookupRegistryIntegrity(
       NAME,
       VERSION,
-      vi.fn(async () => new Response("not found", { status: 404 })),
+      notFound,
     )).resolves.toBeUndefined();
 
+    const found = vi.fn(async () => new Response(JSON.stringify({
+      dist: { integrity: INTEGRITY },
+    }), { status: 200 }));
     await expect(lookupRegistryIntegrity(
       NAME,
       VERSION,
-      vi.fn(async () => new Response(JSON.stringify({
-        versions: {
-          [VERSION]: { dist: { integrity: INTEGRITY } },
-        },
-      }), { status: 200 })),
+      found,
     )).resolves.toBe(INTEGRITY);
+
+    const expectedUrl = "https://registry.npmjs.org/%40rvkang%2Frv-workflow/0.1.0";
+    expect(notFound).toHaveBeenCalledWith(expectedUrl, expect.any(Object));
+    expect(found).toHaveBeenCalledWith(expectedUrl, expect.any(Object));
   });
 
   it("accepts npm 12 keyed pack metadata as well as the legacy array shape", () => {

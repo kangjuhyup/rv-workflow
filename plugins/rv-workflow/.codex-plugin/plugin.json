@@ -1,6 +1,6 @@
 {
   "name": "rv-workflow",
-  "version": "0.1.0+codex.20260905124250",
+  "version": "0.1.0+codex.20260905125105",
   "description": "Role-based project workflows with self-contained Superpowers guidance, Ponytail minimal-code skills, toolchain checks, and task-progress dashboards.",
   "author": {
     "name": "River Kang"
