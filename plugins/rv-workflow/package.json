@@ -1,6 +1,6 @@
 {
   "name": "@rvkang/rv-workflow",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Role-based Codex project workflows with toolchain checks and task-progress dashboards.",
   "private": false,
   "type": "module",
