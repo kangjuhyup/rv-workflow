@@ -39,7 +39,10 @@ describe("The npm release workflow is driven by Changesets", () => {
 
     expect(workflow).toContain("branches:\n      - main");
     expect(workflow).toContain("cwd: plugins/rv-workflow");
-    expect(workflow).toContain('echo "$GITHUB_WORKSPACE/.github/bin" >> "$GITHUB_PATH"');
+    expect(workflow).toContain("npm install --global npm@12.0.2");
+    expect(workflow).toContain('test "$(npm --version)" = "12.0.2"');
+    expect(workflow).not.toContain("corepack install");
+    expect(workflow).not.toContain(".github/bin/npm");
     expect(workflow).toContain("publish-script: npm run release");
     expect(workflow).toContain("push-git-tags: true");
     expect(workflow).toContain("create-github-releases: true");
@@ -47,11 +50,5 @@ describe("The npm release workflow is driven by Changesets", () => {
     expect(workflow).toMatch(/actions\/checkout@[0-9a-f]{40}/);
     expect(workflow).toMatch(/actions\/setup-node@[0-9a-f]{40}/);
     expect(workflow).toMatch(/changesets\/action@[0-9a-f]{40}/);
-
-    const npmWrapper = await readFile(
-      resolve(repositoryRoot, ".github/bin/npm"),
-      "utf8",
-    );
-    expect(npmWrapper).toContain('exec corepack npm "$@"');
   });
 });
