@@ -34,6 +34,51 @@ npm run validate
 
 These are commands to run, not claims that they have passed. The package's own MCP dependencies are installed from its lockfile; do not change pins merely to match a local runtime.
 
+## npm package
+
+The public package name is `@rvkang/rv-workflow`. For the one-time `0.1.0` bootstrap, first commit and push the exact release source to `main`, absorb pending pre-release Changesets, log in to npm as `kangjuhyup`, and configure Git tag signing. Then run this from an interactive terminal:
+
+```sh
+npm run release:first
+```
+
+The command validates and packs the artifact, requires a clean `main` exactly matching `origin/main`, verifies npm identity and integrity, publishes the public package, pushes the signed package tag, and creates the GitHub Release. Exact partial state is resumable; conflicting package or tag state is rejected. The command accepts no arguments and requires a TTY for npm 2FA.
+
+Add a Changeset to every pull request that changes the published package:
+
+```sh
+npm run changeset
+```
+
+After the changeset reaches `main`, the repository release workflow opens or updates a version pull request. Merging that pull request runs `changeset publish`; `prepublishOnly` performs the complete validation suite before npm publishing, then the workflow pushes the `@rvkang/rv-workflow@<version>` Git tag and creates the matching GitHub Release. After bootstrap, configure npm Trusted Publishing for GitHub owner `kangjuhyup`, repository `rv-workflow`, and workflow `release.yml`, or provide a repository `NPM_TOKEN` secret with publish access. GitHub Actions also needs permission to create pull requests with `GITHUB_TOKEN`.
+
+After the first release, a global installation exposes `rv-workflow-progress` and `rv-workflow-templates`:
+
+```sh
+npm install --global @rvkang/rv-workflow
+rv-workflow-progress --once --workspace /path/to/project
+rv-workflow-templates /path/to/project
+```
+
+The npm package distributes the runtime plugin assets and CLIs. Codex plugin discovery still uses the local marketplace installation described above.
+
+## Bundled methodology skills
+
+The scoped workflow router includes adapted Superpowers 6.3.0 guidance as lazy-loaded references, so installing RV Workflow does not require a separate Superpowers plugin. The full catalog remains behind `$rv-workflow:scoped-superpowers`; it loads at most one phase-specific reference.
+
+Ponytail 4.9.0 is bundled as six plugin-qualified skills:
+
+```text
+$rv-workflow:ponytail full
+$rv-workflow:ponytail-review
+$rv-workflow:ponytail-audit
+$rv-workflow:ponytail-debt
+$rv-workflow:ponytail-gain
+$rv-workflow:ponytail-help
+```
+
+The persistent Ponytail mode is explicit-only. Focused one-shot skills may match their specific natural-language triggers. See [`THIRD_PARTY_NOTICES.md`](./THIRD_PARTY_NOTICES.md) for upstream versions, revisions, adaptations, and MIT license files.
+
 ## Task progress UI
 
 The local stdio MCP server exposes separate write/read tools for task state and a read-only `render_task_progress` dashboard. The terminal companion uses the same task service and, when both stdin and stdout are TTYs, also exposes confirmed, allowlisted step updates. Use `$rv-workflow:task-progress` only when the user explicitly requests tracking or for medium/large work, and record phase boundaries rather than every command. Small questions, status checks, file lookups, localized routine edits, and routine commits remain untracked.

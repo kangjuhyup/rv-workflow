@@ -1,7 +1,7 @@
 import { spawn, spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
-import { dirname, join } from "node:path";
+import { delimiter, dirname, join } from "node:path";
 
 function requiredNodeVersion(pluginRoot) {
   const packageManifest = JSON.parse(readFileSync(join(pluginRoot, "package.json"), "utf8"));
@@ -30,8 +30,13 @@ function runtimeCandidates(requiredVersion) {
 }
 
 async function reexec(nodePath, entryPath, args) {
+  const runtimePath = dirname(nodePath);
   const child = spawn(nodePath, [entryPath, ...args], {
-    env: { ...process.env, RV_WORKFLOW_NODE: nodePath },
+    env: {
+      ...process.env,
+      PATH: [runtimePath, process.env.PATH].filter(Boolean).join(delimiter),
+      RV_WORKFLOW_NODE: nodePath,
+    },
     stdio: "inherit",
   });
   const forward = (signal) => child.kill(signal);

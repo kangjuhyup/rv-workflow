@@ -70,12 +70,12 @@ Classify Superpowers usage by task scope before loading any Superpowers skill:
 
 - Small, clear and low-risk work: do not invoke `scoped-superpowers` or any Superpowers skill. This includes simple questions, status checks, small explanations, direct shell-output requests, straightforward file lookups, localized routine edits and routine commits. Use the relevant role skill and a direct, proportional check.
 - Medium, large or high-risk work: invoke `rv-workflow:scoped-superpowers` as the lightweight decision gate. Load only the Superpowers skill selected for the current phase; never preload the whole workflow.
-- Explicitly requested Superpowers workflow: use the named skill without expanding the user's requested scope.
+- Explicitly requested Superpowers workflow: invoke `rv-workflow:scoped-superpowers` and load its matching bundled reference without expanding the user's requested scope.
 
 Scope is determined primarily by uncertainty, blast radius, reversibility and security or data risk, not by file count alone. Any high-risk concern promotes the task regardless of apparent size.
 
-For medium, large and high-risk work, actively use parallel agents when there are at least two concrete workstreams with no shared mutable state, overlapping file edits or sequential dependency, and each workstream is substantial enough to justify dispatch. Use `dispatching-parallel-agents`, start eligible agents concurrently, give each a focused scope and expected evidence, then review and verify the integrated result. Do not split small work or related failures merely to create parallelism.
+For medium, large and high-risk work, actively use parallel agents when there are at least two concrete workstreams with no shared mutable state, overlapping file edits or sequential dependency, and each workstream is substantial enough to justify dispatch. Use the parallel-agent reference bundled with `rv-workflow:scoped-superpowers`, start eligible agents concurrently, give each a focused scope and expected evidence, then review and verify the integrated result. Do not split small work or related failures merely to create parallelism.
 
-`brainstorming`, `test-driven-development`, `executing-plans`, `using-git-worktrees`, `finishing-a-development-branch`, `subagent-driven-development`, `writing-skills` and `using-superpowers` remain explicit-request-only. Do not use `using-superpowers` as a default turn starter.
+The bundled `brainstorming`, `test-driven-development`, `executing-plans`, `using-git-worktrees`, `finishing-a-development-branch`, `subagent-driven-development`, `writing-skills` and `using-superpowers` references remain explicit-request-only. Do not load the `using-superpowers` reference as a default turn starter.
 
 Repository-specific instructions and direct user requests take precedence over this routing policy.

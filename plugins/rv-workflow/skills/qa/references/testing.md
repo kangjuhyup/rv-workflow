@@ -29,7 +29,7 @@ Derive commands from package scripts, task runners and CI. Do not invent flags t
 
 - Distinguish a product failure from environment, fixture or infrastructure failure.
 - Capture the first actionable error and reproduce it with the narrowest command.
-- Use `systematic-debugging` when the cause is unclear, behavior is flaky or failures cascade.
+- Route through `$rv-workflow:scoped-superpowers` and its bundled systematic-debugging reference when the cause is unclear, behavior is flaky or failures cascade.
 - Do not silently update snapshots or expected outputs without confirming the behavior change is intended.
 
 ## Report

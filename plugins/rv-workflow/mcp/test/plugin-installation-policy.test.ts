@@ -48,3 +48,35 @@ describe("Codex plugin MCP registration is portable", () => {
     }
   });
 });
+
+describe("The npm package is publishable under the RV Kang organization", () => {
+  it("uses the public organization scope and ships only runtime plugin assets", async () => {
+    const packageJson = JSON.parse(
+      await readFile(resolve(pluginRoot, "package.json"), "utf8"),
+    ) as JsonObject;
+
+    expect(packageJson.name).toBe("@rvkang/rv-workflow");
+    expect(packageJson.private).toBe(false);
+    expect(packageJson.publishConfig).toEqual({ access: "public" });
+    expect(packageJson.repository).toEqual({
+      type: "git",
+      url: "git+https://github.com/kangjuhyup/rv-workflow.git",
+    });
+    expect(packageJson.files).toEqual(expect.arrayContaining([
+      ".codex-plugin/",
+      ".mcp.json",
+      "mcp/dist/",
+      "scripts/",
+      "skills/",
+      "templates/",
+      "web/dist/",
+    ]));
+    expect(packageJson.bin).toEqual({
+      "rv-workflow-progress": "mcp/dist/progress-cli.js",
+      "rv-workflow-templates": "scripts/install-templates.mjs",
+    });
+    expect(packageJson.scripts).toEqual(expect.objectContaining({
+      prepublishOnly: "npm run validate",
+    }));
+  });
+});

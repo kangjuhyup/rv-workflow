@@ -1,0 +1,8 @@
+{
+  "name": "Ponytail",
+  "version": "4.9.0",
+  "revision": "0a4dd63ad4541f4f655c4108a295916f3c1d8fda",
+  "source": "https://github.com/DietrichGebert/ponytail",
+  "license": "MIT",
+  "integration": "adapted-skills"
+}

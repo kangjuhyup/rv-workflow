@@ -1,8 +1,43 @@
 {
-  "name": "@rv-workflow/plugin",
+  "name": "@rvkang/rv-workflow",
   "version": "0.1.0",
-  "private": true,
+  "description": "Role-based Codex project workflows with toolchain checks and task-progress dashboards.",
+  "private": false,
   "type": "module",
+  "keywords": [
+    "codex",
+    "mcp",
+    "workflow",
+    "agents",
+    "tui"
+  ],
+  "files": [
+    ".codex-plugin/",
+    ".mcp.json",
+    ".node-version",
+    "THIRD_PARTY_NOTICES.md",
+    "licenses/",
+    "mcp/dist/",
+    "scripts/",
+    "skills/",
+    "templates/",
+    "web/dist/"
+  ],
+  "bin": {
+    "rv-workflow-progress": "mcp/dist/progress-cli.js",
+    "rv-workflow-templates": "scripts/install-templates.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kangjuhyup/rv-workflow.git"
+  },
+  "homepage": "https://github.com/kangjuhyup/rv-workflow#readme",
+  "bugs": {
+    "url": "https://github.com/kangjuhyup/rv-workflow/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": "24.20.0",
     "npm": "12.0.2"
@@ -12,9 +47,15 @@
     "build": "npm run build:mcp && npm run build:web",
     "build:mcp": "esbuild mcp/src/server.ts --bundle --format=esm --platform=node --target=node24 --outfile=mcp/dist/server.js && esbuild mcp/src/progress-cli.ts --bundle --format=esm --platform=node --target=node24 --banner:js=\"#!/usr/bin/env node\" --outfile=mcp/dist/progress-cli.js",
     "build:web": "esbuild web/src/index.tsx --bundle --format=esm --platform=browser --target=es2022 --outfile=web/dist/component.js",
+    "changeset": "changeset",
+    "changeset:status": "changeset status",
+    "changeset:version": "changeset version",
     "progress": "node scripts/start-progress.mjs",
     "progress:panel": "node scripts/start-progress.mjs --panel",
     "progress:ensure": "node scripts/start-progress.mjs --ensure-panel",
+    "prepublishOnly": "npm run validate",
+    "release": "changeset publish",
+    "release:first": "node scripts/start-first-release.mjs",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -28,6 +69,7 @@
     "zod": "4.5.4"
   },
   "devDependencies": {
+    "@changesets/cli": "3.0.2",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@types/node": "26.4.1",

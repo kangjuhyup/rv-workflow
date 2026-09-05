@@ -1,0 +1,7 @@
+interface:
+  display_name: "Ponytail"
+  short_description: "Choose the smallest correct coding solution"
+  default_prompt: "Use $rv-workflow:ponytail full to solve this with the smallest correct change."
+
+policy:
+  allow_implicit_invocation: false

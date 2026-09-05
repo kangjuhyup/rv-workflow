@@ -7,6 +7,7 @@ import { describe, expect, it } from "vitest";
 const pluginRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const startScript = resolve(pluginRoot, "scripts/start-mcp.mjs");
 const progressStartScript = resolve(pluginRoot, "scripts/start-progress.mjs");
+const firstReleaseStartScript = resolve(pluginRoot, "scripts/start-first-release.mjs");
 const legacyNode = "/usr/local/bin/node";
 const expectedNodeVersion = (JSON.parse(
   readFileSync(resolve(pluginRoot, "package.json"), "utf8"),
@@ -105,6 +106,24 @@ describe("Progress startup fixes its runtime before importing the CLI bundle", (
         RV_WORKFLOW_NODE: process.execPath,
         RV_WORKFLOW_RUNTIME_CHECK: "1",
       }, progressStartScript);
+
+      expect(result.timedOut).toBe(false);
+      expect(result.exitCode).toBe(0);
+      expect(result.signal).toBeNull();
+      expect(result.stdout.trim()).toBe(expectedNodeVersion);
+      expect(result.stderr).toBe("");
+    },
+  );
+});
+
+describe("First release startup fixes its runtime before importing release code", () => {
+  it.skipIf(!existsSync(legacyNode))(
+    "re-execs a PATH Node 16 host through the pinned Node 24 runtime",
+    async () => {
+      const result = await runStartScript(legacyNode, {
+        RV_WORKFLOW_NODE: process.execPath,
+        RV_WORKFLOW_RUNTIME_CHECK: "1",
+      }, firstReleaseStartScript);
 
       expect(result.timedOut).toBe(false);
       expect(result.exitCode).toBe(0);

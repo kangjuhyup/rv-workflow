@@ -1,0 +1,8 @@
+{
+  "name": "Superpowers",
+  "version": "6.3.0",
+  "revision": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+  "source": "https://github.com/obra/superpowers",
+  "license": "MIT",
+  "integration": "adapted-references"
+}

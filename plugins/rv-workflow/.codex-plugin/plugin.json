@@ -1,7 +1,7 @@
 {
   "name": "rv-workflow",
-  "version": "0.1.0+codex.20260905060221",
-  "description": "Reusable role routing, project toolchain checks, scoped Superpowers, and web or terminal task progress dashboards for Codex projects.",
+  "version": "0.1.0+codex.20260905124250",
+  "description": "Role-based project workflows with self-contained Superpowers guidance, Ponytail minimal-code skills, toolchain checks, and task-progress dashboards.",
   "author": {
     "name": "River Kang"
   },
@@ -9,15 +9,17 @@
   "interface": {
     "displayName": "RV Workflow",
     "shortDescription": "Route project work and show task progress.",
-    "longDescription": "Adds lightweight backend, frontend, document, QA, and planning workflows with model-specific agent templates, project toolchain checks, scoped Superpowers usage, and MCP App or terminal task progress dashboards.",
+    "longDescription": "Adds lightweight backend, frontend, document, QA, and planning workflows with model-specific agent templates, project toolchain checks, self-contained Superpowers-derived guidance, bundled Ponytail minimal-code skills, and MCP App or terminal task progress dashboards.",
     "developerName": "River Kang",
     "category": "Productivity",
     "capabilities": [
       "Role-based project workflows",
+      "Minimal-code guidance",
       "Task progress dashboard"
     ],
     "defaultPrompt": [
       "Plan this project change and show its progress.",
+      "Use Ponytail to find the smallest correct implementation.",
       "Show the current project task progress."
     ]
   },
