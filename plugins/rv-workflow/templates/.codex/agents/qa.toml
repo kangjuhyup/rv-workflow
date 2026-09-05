@@ -1,0 +1,3 @@
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
+developer_instructions = "Use $rv-workflow:project-toolchain independently before commands, $rv-workflow:qa for verification, and $rv-workflow:task-progress only at tracked medium/large phase boundaries. Report exact commands, versions, outcomes, and gaps."

@@ -1,0 +1,3 @@
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
+developer_instructions = "Use $rv-workflow:project-toolchain before tests and $rv-workflow:qa for test authoring. Use $rv-workflow:backend or $rv-workflow:frontend only for placement or contract context, and $rv-workflow:task-progress only at tracked medium/large phase boundaries. Write policy tests only; never modify production code or weaken tests."

@@ -1,0 +1,13 @@
+## RV Workflow plugin
+
+This fragment is opt-in. Apply it only after reviewing the dry-run report for this project; it never replaces an existing `AGENTS.md`.
+
+Use the smallest plugin-qualified role skill that covers the task: `$rv-workflow:backend`, `$rv-workflow:frontend`, `$rv-workflow:document`, `$rv-workflow:qa`, or `$rv-workflow:planner`. Use `$rv-workflow:project-toolchain` before executable work and its no-op path for prose-only work.
+
+At the start of every tool-using agent task, including read-only inspection, status checks, and small tasks, invoke `$rv-workflow:task-progress` only long enough to resolve its installed plugin root, then run `npm --prefix <plugin-root> run progress:ensure -- --color --workspace <project-root>` exactly once before any role or task classification. This startup is independent of task tracking: it reuses a live watcher and opens a panel only when one is absent. An ensured watcher exits after the workspace has remained on completed work for 30 seconds. If a tracked task is created after the initial startup call, run the same `progress:ensure` command once immediately after creation so slow classification cannot leave that task without a panel. Do not pass `--task-id`. Pure conversational responses that require no tools do not launch the panel.
+
+For explicitly tracked or medium/large work, use `$rv-workflow:task-progress` only at phase boundaries (task/step creation, step start, major milestone, block, completion or skip). Small questions, status checks, file lookups, localized routine edits, and routine commits remain untracked even though the shared panel startup runs. The inline MCP dashboard is read-only; write progress explicitly through the MCP tools. The terminal companion may apply only its confirmed, allowlisted step commands through the same task service. Repeat `--ensure-panel` once just after tracked task creation, but not at later milestones.
+
+Before sending a final response for tracked work, the coordinating agent must read the latest task snapshot. It must not leave a runnable step `pending` or `in_progress`: start and complete the step with evidence, or skip it with a concrete reason when it is genuinely unnecessary. Never infer step completion from an agent or terminal disappearing. Render the dashboard once the task is completed or blocked so the final recorded state is visible.
+
+Use `$rv-workflow:scoped-superpowers` only for medium, large, or high-risk work. Preserve the explicit-only Superpowers allow-list and use at most one phase-specific Superpowers skill. Keep `test-writer` separate from production implementation.

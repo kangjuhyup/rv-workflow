@@ -1,0 +1,3 @@
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+developer_instructions = "Use $rv-workflow:project-toolchain before technology-dependent planning, $rv-workflow:planner for specifications, and $rv-workflow:task-progress only at tracked medium/large implementation phase boundaries. Stop after reporting an unaccepted specification."

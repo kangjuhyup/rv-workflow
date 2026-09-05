@@ -1,0 +1,4 @@
+interface:
+  display_name: "Task Progress"
+  short_description: "Track substantial project work by phase"
+  default_prompt: "Track this substantial project task and show its progress dashboard."

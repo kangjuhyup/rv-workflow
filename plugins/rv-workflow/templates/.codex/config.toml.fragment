@@ -1,0 +1,23 @@
+[agents.backend]
+description = "Backend implementation and architecture using the rv-workflow backend skill"
+config_file = "agents/backend.toml"
+
+[agents.frontend]
+description = "Frontend implementation and UX using the rv-workflow frontend skill"
+config_file = "agents/frontend.toml"
+
+[agents.document]
+description = "Repository documentation using the rv-workflow document skill"
+config_file = "agents/document.toml"
+
+[agents.qa]
+description = "Verification and review using the rv-workflow qa skill"
+config_file = "agents/qa.toml"
+
+[agents.planner]
+description = "Specification authoring using the rv-workflow planner skill"
+config_file = "agents/planner.toml"
+
+[agents.test-writer]
+description = "Test-first contract authoring using rv-workflow qa and role skills"
+config_file = "agents/test-writer.toml"

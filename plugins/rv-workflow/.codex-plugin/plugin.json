@@ -1,0 +1,25 @@
+{
+  "name": "rv-workflow",
+  "version": "0.1.0+codex.20260905060221",
+  "description": "Reusable role routing, project toolchain checks, scoped Superpowers, and web or terminal task progress dashboards for Codex projects.",
+  "author": {
+    "name": "River Kang"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "RV Workflow",
+    "shortDescription": "Route project work and show task progress.",
+    "longDescription": "Adds lightweight backend, frontend, document, QA, and planning workflows with model-specific agent templates, project toolchain checks, scoped Superpowers usage, and MCP App or terminal task progress dashboards.",
+    "developerName": "River Kang",
+    "category": "Productivity",
+    "capabilities": [
+      "Role-based project workflows",
+      "Task progress dashboard"
+    ],
+    "defaultPrompt": [
+      "Plan this project change and show its progress.",
+      "Show the current project task progress."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

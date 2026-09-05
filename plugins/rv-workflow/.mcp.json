@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "rv-workflow-progress": {
+      "command": "node",
+      "args": [
+        "./scripts/start-mcp.mjs"
+      ],
+      "cwd": "./"
+    }
+  }
+}
