@@ -51,4 +51,13 @@ describe("The npm release workflow is driven by Changesets", () => {
     expect(workflow).toMatch(/actions\/setup-node@[0-9a-f]{40}/);
     expect(workflow).toMatch(/changesets\/action@[0-9a-f]{40}/);
   });
+
+  it("keeps prepublish validation within constrained runner memory", async () => {
+    const vitestConfiguration = await readFile(
+      resolve(pluginRoot, "vitest.config.ts"),
+      "utf8",
+    );
+
+    expect(vitestConfiguration).toMatch(/fileParallelism:\s*false/);
+  });
 });
