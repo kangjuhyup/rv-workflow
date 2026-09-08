@@ -5,6 +5,8 @@ description: Use when a large, ambiguous, or cross-role change needs an evidence
 
 # Planner
 
+For a simple, clear, low-risk execution request, use the relevant implementation role and act directly without producing a plan unless the user explicitly asks for one. For a request to plan a change or outline implementation steps, use `$rv-workflow:compact-plan` without requiring the user to name it, then return. Write a specification only when explicitly requested or needed to resolve material product decisions, cross-role contracts or risk; a planning request or file count alone does not require one.
+
 Create the specification document before implementation:
 
 1. Inspect repository instructions, architecture, current behavior, affected files and verification commands.

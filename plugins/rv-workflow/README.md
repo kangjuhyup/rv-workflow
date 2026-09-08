@@ -64,7 +64,7 @@ The npm package distributes the runtime plugin assets and CLIs. Codex plugin dis
 
 ## Bundled methodology skills
 
-The scoped workflow router includes adapted Superpowers 6.3.0 guidance as lazy-loaded references, so installing RV Workflow does not require a separate Superpowers plugin. The full catalog remains behind `$rv-workflow:scoped-superpowers`; it loads at most one phase-specific reference.
+Simple, clear, low-risk tasks run directly without a plan unless one is requested. Requests such as “plan this change” or “outline the implementation steps” automatically use `compact-plan` for a short, reviewable plan; no skill name is needed. The scoped workflow router includes adapted Superpowers 6.3.0 guidance as lazy-loaded references, so installing RV Workflow does not require a separate Superpowers plugin. The full catalog remains behind `$rv-workflow:scoped-superpowers`; it loads at most one phase-specific reference.
 
 Ponytail 4.9.0 is bundled as six plugin-qualified skills:
 
@@ -166,6 +166,6 @@ The opt-in templates preserve the established roles and routing:
 | document | `gpt-5.6-luna` | medium |
 | qa | `gpt-5.6-terra` | high |
 
-`test-writer` remains separate and may write tests only. Templates use plugin-qualified skill names (`$rv-workflow:backend`, `$rv-workflow:frontend`, `$rv-workflow:document`, `$rv-workflow:qa`, `$rv-workflow:planner`, `$rv-workflow:project-toolchain`, `$rv-workflow:scoped-superpowers`, and `$rv-workflow:task-progress`) to avoid collisions with unrelated skills.
+`test-writer` remains separate and may write tests only. Templates use plugin-qualified skill names (`$rv-workflow:backend`, `$rv-workflow:frontend`, `$rv-workflow:document`, `$rv-workflow:qa`, `$rv-workflow:planner`, `$rv-workflow:compact-plan`, `$rv-workflow:project-toolchain`, `$rv-workflow:scoped-superpowers`, and `$rv-workflow:task-progress`) to avoid collisions with unrelated skills.
 
 See the accepted design and behavior contract in [`docs/specs/2026-09-04-rv-workflow-plugin-task-progress-ui.md`](../../docs/specs/2026-09-04-rv-workflow-plugin-task-progress-ui.md).

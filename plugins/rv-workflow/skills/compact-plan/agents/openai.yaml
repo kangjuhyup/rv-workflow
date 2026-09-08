@@ -1,0 +1,7 @@
+interface:
+  display_name: "Compact Plan"
+  short_description: "Write short, reviewable implementation plans"
+  default_prompt: "Use $rv-workflow:compact-plan to write a short implementation plan I can review."
+
+policy:
+  allow_implicit_invocation: true

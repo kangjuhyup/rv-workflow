@@ -9,6 +9,7 @@ It is intended for teams that want agents to follow a consistent planner → tes
 ## Features
 
 - Backend, frontend, document, planner, QA, and test-writer agent profiles
+- Compact implementation plans capped to a small, reviewable shape
 - Plugin-qualified skills that avoid collisions with unrelated workflows
 - Repository-pinned Node.js and npm runtime checks
 - Scope-aware, self-contained Superpowers 6.3.0 routing
@@ -52,7 +53,7 @@ Start a new Codex conversation after installation so the plugin skills and MCP t
 
 ### Bundled methodology skills
 
-Superpowers-derived workflows are bundled as lazy-loaded references behind `$rv-workflow:scoped-superpowers`; no separate Superpowers plugin is required. Ponytail is available through six plugin-qualified skills:
+Simple, clear, low-risk tasks run directly without a plan unless one is requested. Requests such as “plan this change” or “outline the implementation steps” automatically use `compact-plan` for a short, reviewable plan; no skill name is needed. Superpowers-derived workflows are bundled as lazy-loaded references behind `$rv-workflow:scoped-superpowers`; no separate Superpowers plugin is required. Ponytail is available through six plugin-qualified skills:
 
 ```text
 $rv-workflow:ponytail full

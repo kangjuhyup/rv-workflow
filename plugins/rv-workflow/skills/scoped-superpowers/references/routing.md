@@ -53,7 +53,7 @@ Do not dispatch parallel agents for microtasks, related failures that may share 
 | Current evidence or phase | Superpowers decision |
 | --- | --- |
 | Requirements are already clear | Skip [brainstorming](superpowers/brainstorming.md). Use `planner` only if a project specification is needed. |
-| Implementation order remains non-obvious after an accepted specification | Read [writing plans](superpowers/writing-plans.md) for a genuinely multi-stage implementation sequence. |
+| Implementation order needs a reviewable sequence | Use `$rv-workflow:compact-plan`; do not load a bundled planning workflow unless the user explicitly requests it. |
 | Two or more workstreams pass the parallelism gate | Read [dispatching parallel agents](superpowers/dispatching-parallel-agents.md) and start focused agents concurrently. |
 | A real bug or failure has an unclear cause, is flaky, or produces cascading symptoms | Read [systematic debugging](superpowers/systematic-debugging.md). Skip it for an obvious typo or a directly explained failure. |
 | Substantive or questionable review feedback must be evaluated | Read [receiving code review](superpowers/receiving-code-review.md). Skip it for mechanical, unambiguous edits. |
@@ -64,6 +64,7 @@ Use the following only when the user explicitly requests that workflow:
 
 - [brainstorming](superpowers/brainstorming.md)
 - [test-driven development](superpowers/test-driven-development.md)
+- [writing plans](superpowers/writing-plans.md)
 - [executing plans](superpowers/executing-plans.md)
 - [using Git worktrees](superpowers/using-git-worktrees.md)
 - [finishing a development branch](superpowers/finishing-a-development-branch.md)

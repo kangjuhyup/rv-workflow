@@ -1,6 +1,6 @@
 # Plan Guidance
 
-Use this reference when the requested deliverable is an implementation or migration plan. If requirements or architectural decisions are unresolved, use `planner` to create the specification first.
+For ordinary implementation plans, use `$rv-workflow:compact-plan` and skip the detailed shape below. Use this reference when the user requests a detailed plan or a migration needs explicit compatibility and rollback decisions. If material requirements or architectural decisions are unresolved, use `planner` to create the specification first.
 
 ## Plan Shape
 

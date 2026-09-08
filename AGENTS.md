@@ -16,7 +16,11 @@ Choose the smallest role skill that covers the current task. Load only the refer
 | `qa` | Test execution, lint/build checks, regression verification, review and security checks |
 | `planner` | Evidence-backed specification documents for large, ambiguous or cross-role work |
 
-For a focused task, start with its implementation role. Use `planner` first when the work needs a specification because it spans several files or roles, has unclear boundaries, or contains unresolved product or technical decisions. After the specification is accepted, use the selected implementation roles and then `qa` for verification or review.
+For simple, clear, low-risk execution requests, perform the authorized work directly. Skip plan output, plan files and plan approval pauses unless the user explicitly asks for planning; keep these tasks untracked unless tracking is explicitly requested. Use `$rv-workflow:compact-plan` automatically for requests such as “계획 세워줘”, “구현 순서 정리해줘”, or “plan this change”, and when a non-obvious implementation sequence needs review. The user does not need to name the skill or ask for brevity. Multiple files or commands alone do not justify a plan. It is a workflow skill, not a role; use the relevant implementation role for repository-specific evidence.
+
+If a proposed change conflicts with an existing repository, product or business policy, present the policy/source, conflict, impact and proposed adjustment for user review. Pause affected work until the user approves the resolution, even for otherwise simple tasks; unaffected, authorized work may continue. Do not silently override the policy or request approval again for the same explicitly approved resolution.
+
+For a focused task, start with its implementation role. Use `planner` first only when a formal specification is explicitly requested or necessary for material product or technical decisions, cross-role contracts or risk. A planning request or file count alone does not require a specification. After the specification is accepted, use the selected implementation roles and then `qa` for verification or review.
 
 Do not load every role or every reference preemptively. When several references apply, read the minimum set needed for the current decision.
 
@@ -76,6 +80,6 @@ Scope is determined primarily by uncertainty, blast radius, reversibility and se
 
 For medium, large and high-risk work, actively use parallel agents when there are at least two concrete workstreams with no shared mutable state, overlapping file edits or sequential dependency, and each workstream is substantial enough to justify dispatch. Use the parallel-agent reference bundled with `rv-workflow:scoped-superpowers`, start eligible agents concurrently, give each a focused scope and expected evidence, then review and verify the integrated result. Do not split small work or related failures merely to create parallelism.
 
-The bundled `brainstorming`, `test-driven-development`, `executing-plans`, `using-git-worktrees`, `finishing-a-development-branch`, `subagent-driven-development`, `writing-skills` and `using-superpowers` references remain explicit-request-only. Do not load the `using-superpowers` reference as a default turn starter.
+The bundled `brainstorming`, `test-driven-development`, `writing-plans`, `executing-plans`, `using-git-worktrees`, `finishing-a-development-branch`, `subagent-driven-development`, `writing-skills` and `using-superpowers` references remain explicit-request-only. Ordinary requests for a plan use `$rv-workflow:compact-plan`; do not load the `using-superpowers` reference as a default turn starter.
 
 Repository-specific instructions and direct user requests take precedence over this routing policy.

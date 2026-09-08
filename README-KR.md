@@ -9,6 +9,7 @@ RV Workflow는 역할 기반 프로젝트 실행, 저장소에 고정된 툴체�
 ## 주요 기능
 
 - Backend, frontend, document, planner, QA, test-writer 에이전트 프로필
+- 작고 검토하기 쉬운 형태로 제한된 구현 계획
 - 다른 워크플로와 이름이 충돌하지 않는 플러그인 한정 스킬
 - 저장소에 고정된 Node.js 및 npm 런타임 검사
 - 외부 설치 없이 동작하는 Superpowers 6.3.0 범위 라우팅
@@ -52,7 +53,7 @@ codex plugin add rv-workflow@personal
 
 ### 내장 방법론 스킬
 
-Superpowers 파생 워크플로는 `$rv-workflow:scoped-superpowers`가 필요한 reference만 불러오므로 별도 Superpowers 플러그인이 필요하지 않습니다. Ponytail은 다음 여섯 개의 플러그인 한정 스킬로 사용할 수 있습니다.
+단순하고 명확하며 위험이 낮은 작업은 계획 없이 바로 실행합니다. “계획 세워줘”, “구현 순서 정리해줘”처럼 계획을 요청하면 `compact-plan`으로 짧고 검토하기 쉬운 계획을 작성합니다. 스킬 이름을 명시할 필요는 없습니다. Superpowers 파생 워크플로는 `$rv-workflow:scoped-superpowers`가 필요한 reference만 불러오므로 별도 Superpowers 플러그인이 필요하지 않습니다. Ponytail은 다음 여섯 개의 플러그인 한정 스킬로 사용할 수 있습니다.
 
 ```text
 $rv-workflow:ponytail full
